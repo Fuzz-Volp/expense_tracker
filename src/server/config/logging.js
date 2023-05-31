@@ -1,5 +1,4 @@
 import chalk from "chalk";
-
 const DEFAULT_NAMESPACE = "Server";
 
 const info = (message, namespace) => {
