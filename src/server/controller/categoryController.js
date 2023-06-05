@@ -73,3 +73,5 @@ const apiController = {
     res.json(res.locals.data.category);
   },
 };
+
+export { dataController, apiController };
