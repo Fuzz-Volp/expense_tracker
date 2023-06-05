@@ -1,10 +1,23 @@
 import React from 'react'
 
 function ExpenseItem({ date, name, category, payment, amount }) {
-  // const { name, amount, date } = props;
+  const categoryColors = {
+    food: 'green',
+    entertainment: 'blue',
+    utilities: 'red',
+    other: 'orange'
+  }
+
+  const defaultColor = 'purple'
+  const categoryColor = categoryColors[category.toLowerCase()] || defaultColor
+
+  const expenseStyle = {
+    display: 'flex',
+    color: categoryColor
+  }
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={expenseStyle}>
       <div style={{ flex: 1 }}>{date}</div>
       <div style={{ flex: 1 }}>{name}</div>
       <div style={{ flex: 1 }}>{category}</div>
@@ -13,4 +26,5 @@ function ExpenseItem({ date, name, category, payment, amount }) {
     </div>
   )
 }
+
 export default ExpenseItem

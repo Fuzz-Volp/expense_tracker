@@ -2,6 +2,8 @@ import './App.css'
 
 import React, { useState } from 'react'
 import ExpenseItem from './ExpenseItem'
+import ExpenseTotal from './ExpenseTotal'
+import PaymentTotal from './PaymentTotal'
 
 function App() {
   const [expenses, setExpenses] = useState([])
@@ -114,6 +116,10 @@ function App() {
           amount={expense.amount}
         />
       ))}
+      <br />
+      <ExpenseTotal expenses={expenses} />
+      <br />
+      <PaymentTotal expenses={expenses} />
     </div>
   )
 }
