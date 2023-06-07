@@ -1,9 +1,9 @@
-import Category from "../model/category";
-import logging from "../config/logging";
+import Category from "../model/category.js";
+import logging from "../config/logging.js";
 
 const namespace = "Category";
 
-const dataController = {
+export const dataController = {
   async index(req, res, next) {
     try {
       const foundCats = await Category.find({});
@@ -43,20 +43,21 @@ const dataController = {
   },
   async create(req, res, next) {
     try {
-      const createCat = await Category.create(req.body);
+      const createCat = await Category.create({ name: req.body.name });
       logging.info(createCat, namespace);
-      res.locals.data.category = createCat;
+      res.locals.data.cat = createCat;
       next();
     } catch (error) {
-      res.status(400).send("Error creating category"),
-        logging.error(error, namespace);
+      res.status(400).send("Error creating category");
+      logging.error(error, namespace);
     }
   },
+
   async show(req, res, next) {
     try {
       const foundCat = await Category.findById(req.params.id);
       logging.info(foundCat, namespace);
-      res.locals.data.category = foundCat;
+      res.locals.data.cat = foundCat;
       next();
     } catch (error) {
       res.status(404).send("Category not Found");
@@ -65,13 +66,11 @@ const dataController = {
   },
 };
 
-const apiController = {
+export const apiController = {
   index(req, res, next) {
-    res.json(res.locals.data.categories);
+    res.json(res.locals.data.cats);
   },
   show(req, res, next) {
-    res.json(res.locals.data.category);
+    res.json(res.locals.data.cat);
   },
 };
-
-export { dataController, apiController };

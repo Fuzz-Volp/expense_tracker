@@ -5,7 +5,6 @@ const paymentSchema = new Schema(
     name: {
       type: String,
       required: true,
-      enum: ["PersonalCC", "Cash", "Other"],
     },
   },
   {
@@ -13,4 +12,6 @@ const paymentSchema = new Schema(
   }
 );
 
-module.exports = model("Payment", paymentSchema);
+const Payement = model("Payment", paymentSchema);
+
+export default Payement;

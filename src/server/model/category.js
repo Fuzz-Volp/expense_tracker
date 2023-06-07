@@ -2,15 +2,13 @@ import { model, Schema } from "mongoose";
 
 const categorySchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      enum: ["Food", "Entertainment", "Utilities", "Other"],
-    },
+    name: { type: String, required: true },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = model("Category", categorySchema);
+const Category = model("Category", categorySchema);
+
+export default Category;
