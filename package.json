@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "nodemon src/server/main.js -w src/server",
+    "server": "nodemon src/server/server.js -w src/server",
     "build": "vite build"
   },
   "dependencies": {
