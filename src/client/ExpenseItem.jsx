@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function ExpenseItem({ date, name, category, payment, amount }) {
   const categoryColors = {
@@ -17,12 +17,14 @@ function ExpenseItem({ date, name, category, payment, amount }) {
   }
 
   return (
-    <div style={expenseStyle}>
-      <div style={{ flex: 1 }}>{date}</div>
-      <div style={{ flex: 1 }}>{name}</div>
-      <div style={{ flex: 1 }}>{category}</div>
-      <div style={{ flex: 1 }}>{payment}</div>
-      <div style={{ flex: 1 }}>{amount}</div>
+    <div>
+      <div className="expense-item">
+        <div className="expense-item__field">{date}</div>
+        <div className="expense-item__field">{name}</div>
+        <div className="expense-item__field">{category}</div>
+        <div className="expense-item__field">{payment}</div>
+        <div className="expense-item__field">{amount}</div>
+      </div>
     </div>
   )
 }

@@ -4,3 +4,33 @@
   padding: 2rem;
   text-align: center;
 }
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  flex: 1;
+  padding: 5px;
+}
+
+.form-button {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.expense-item__field {
+  flex: 1;
+}
