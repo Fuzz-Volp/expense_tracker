@@ -1,5 +1,5 @@
-import Expense from "../model/expense.js";
-import logging from "../config/logging.js";
+import Expense from "../../model/expense.js";
+import logging from "../../config/logging.js";
 
 const namespace = "Expense";
 
