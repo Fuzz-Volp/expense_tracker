@@ -33,7 +33,9 @@ userSchema.pre("save", async function (next) {
   // 'this' is the user doc
   if (!this.isModified("password")) return next();
   // update the password with the computer hash
-  this.password = await bcrypt.hash(this.password, config.bcrypt.salt);
+  const saltRounds = 10;
+  const salt = await bcrypt.genSalt(saltRounds);
+  this.password = await bcrypt.hash(this.password, salt);
   return next();
 });
 
