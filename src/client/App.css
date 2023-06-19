@@ -34,3 +34,13 @@
 .expense-item__field {
   flex: 1;
 }
+
+.columns-container {
+  display: flex;
+  gap: 20px; /* Adjust the gap between the columns as needed */
+}
+
+.category-column,
+.payment-column {
+  flex: 1;
+}

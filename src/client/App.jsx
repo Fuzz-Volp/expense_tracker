@@ -102,31 +102,172 @@ function App() {
         return new Date(b.date) - new Date(a.date)
       }
     })
-
     return sortedExpenses
   }
 
+  //NEW FEATURES
+  const handleEditCategory = (index) => {
+    const currentCategory = categoryOptions[index]
+
+    const updatedCategory = prompt(
+      'Enter the updated category name:',
+      currentCategory
+    )
+
+    if (updatedCategory !== null && updatedCategory.trim() !== '') {
+      setCategoryOptions((prevOptions) => {
+        const updatedOptions = [...prevOptions]
+        updatedOptions[index] = updatedCategory
+        return updatedOptions
+      })
+
+      // Update history with the edit action
+      const date = new Date().toLocaleString()
+      const categoryAction = `Edited category: ${currentCategory} to ${updatedCategory}`
+      setHistory((prevHistory) => [
+        ...prevHistory,
+        `${date} - ${categoryAction}`
+      ])
+    }
+  }
+
+  const handleDeleteCategory = (index) => {
+    // Implement the logic to delete the category at the specified index
+    // You can update the categoryOptions state array using the setCategoryOptions function
+    // For example:
+    const deletedCategory = categoryOptions[index]
+    if (
+      window.confirm(
+        `Are you sure you want to delete the category "${deletedCategory}"?`
+      )
+    ) {
+      setCategoryOptions((prevOptions) => {
+        const updatedOptions = [...prevOptions]
+        updatedOptions.splice(index, 1)
+        return updatedOptions
+      })
+
+      // Update history with the delete action
+      const date = new Date().toLocaleString()
+      const categoryAction = `Deleted category: ${deletedCategory}`
+      setHistory((prevHistory) => [
+        ...prevHistory,
+        `${date} - ${categoryAction}`
+      ])
+    }
+  }
+
+  const handleEditPayment = (index) => {
+    const currentPayment = paymentOptions[index]
+
+    const updatedPayment = prompt(
+      'Enter the updated payment name:',
+      currentPayment
+    )
+
+    if (updatedPayment !== null && updatedPayment.trim() !== '') {
+      setPaymentOptions((prevOptions) => {
+        const updatedOptions = [...prevOptions]
+        updatedOptions[index] = updatedPayment
+        return updatedOptions
+      })
+
+      // Update history with the edit action
+      const date = new Date().toLocaleString()
+      const paymentAction = `Edited payment: ${currentPayment} to ${updatedPayment}`
+      setHistory((prevHistory) => [
+        ...prevHistory,
+        `${date} - ${paymentAction}`
+      ])
+    }
+  }
+
+  const handleDeletePayment = (index) => {
+    const deletedPayment = paymentOptions[index]
+    if (
+      window.confirm(
+        `Are you sure you want to delete the payment "${deletedPayment}"?`
+      )
+    ) {
+      setPaymentOptions((prevOptions) => {
+        const updatedOptions = [...prevOptions]
+        updatedOptions.splice(index, 1)
+        return updatedOptions
+      })
+
+      // Update history with the delete action
+      const date = new Date().toLocaleString()
+      const paymentAction = `Deleted payment: ${deletedPayment}`
+      setHistory((prevHistory) => [
+        ...prevHistory,
+        `${date} - ${paymentAction}`
+      ])
+    }
+  }
+
+  // HANDLE EDIT AND DELETE EXPENSE 19TH JUNE
+
+  const handleEditExpense = (index, editedExpense) => {
+    setExpenses((prevExpenses) => {
+      const updatedExpenses = [...prevExpenses]
+      updatedExpenses[index] = editedExpense
+      return updatedExpenses
+    })
+  }
+
+  const handleDeleteExpense = (index) => {
+    setExpenses((prevExpenses) => {
+      const updatedExpenses = [...prevExpenses]
+      updatedExpenses.splice(index, 1)
+      return updatedExpenses
+    })
+  }
+  // END OF NEW FEATURES
+
   return (
     <div>
-      <form onSubmit={handleAddCategory} className="form-row">
-        <input
-          type="text"
-          value={newCategory}
-          onChange={handleCategoryInputChange}
-          placeholder="New Category"
-        />
-        <button type="submit">Add Category</button>
-      </form>
-      <br />
-      <form onSubmit={handleAddPayment} className="form-row">
-        <input
-          type="text"
-          value={newPayment}
-          onChange={handlePaymentInputChange}
-          placeholder="New Payment"
-        />
-        <button type="submit">Add Payment</button>
-      </form>
+      <div className="columns-container">
+        <div className="category-column">
+          {/* Category List */}
+          {categoryOptions.map((categoryOptions, index) => (
+            <div key={index}>
+              {categoryOptions}
+              <button onClick={() => handleEditCategory(index)}>Edit</button>
+              <button onClick={() => handleDeleteCategory(index)}>
+                Delete
+              </button>
+            </div>
+          ))}
+          <form onSubmit={handleAddCategory} className="form-row">
+            <input
+              type="text"
+              value={newCategory}
+              onChange={handleCategoryInputChange}
+              placeholder="New Category"
+            />
+            <button type="submit">Add Category</button>
+          </form>
+        </div>
+        <div className="payment-column">
+          {/* Payment List */}
+          {paymentOptions.map((paymentOptions, index) => (
+            <div key={index}>
+              {paymentOptions}
+              <button onClick={() => handleEditPayment(index)}>Edit</button>
+              <button onClick={() => handleDeletePayment(index)}>Delete</button>
+            </div>
+          ))}
+          <form onSubmit={handleAddPayment} className="form-row">
+            <input
+              type="text"
+              value={newPayment}
+              onChange={handlePaymentInputChange}
+              placeholder="New Payment"
+            />
+            <button type="submit">Add Payment</button>
+          </form>
+        </div>
+      </div>
       <br />
       <form onSubmit={handleSubmit} className="form-row">
         <input
@@ -175,16 +316,21 @@ function App() {
           <div className="expense-item__field">category</div>
           <div className="expense-item__field">payment</div>
           <div className="expense-item__field">amount</div>
+          <div className="expense-item__buttons"></div>
         </div>
       </div>
       {sortExpenses(expenses).map((expense, index) => (
-        <div key={index}>
+        <div key={index} className="expense-item-row">
           <ExpenseItem
             date={expense.date}
             name={expense.name}
             category={expense.category}
             payment={expense.payment}
             amount={expense.amount}
+            categoryOptions={categoryOptions}
+            paymentOptions={paymentOptions}
+            onEdit={(editedExpense) => handleEditExpense(index, editedExpense)}
+            onDelete={() => handleDeleteExpense(index)}
           />
         </div>
       ))}
