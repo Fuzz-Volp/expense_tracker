@@ -1,5 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
+
 
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || "";
 const MONGO_USER = process.env.MONGO_USER || "";
@@ -15,15 +16,16 @@ const config = {
       useNewUrlParser: true,
       socketTimeoutMS: 30000,
       autoIndex: false,
-      retryWrites: false,
+      retryWrites: false
     },
-    uri: `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@cluster0.k6nwrgm.mongodb.net/${DATABASE}`,
+    uri: `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@cluster0.k6nwrgm.mongodb.net/${DATABASE}`
   },
   server: {
-    host: "localhost",
-    port: PORT,
+    host: 'localhost',
+    port: PORT
   },
   secret: SECRET,
 };
 
-export default config;
+
+export default config
