@@ -1,5 +1,5 @@
-import Payement from "../model/payment.js";
-import logging from "../config/logging.js";
+import Payement from "../../model/payment.js";
+import logging from "../../config/logging.js";
 
 const namespace = "Payment";
 

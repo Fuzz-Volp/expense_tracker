@@ -3,7 +3,7 @@ import logging from "../../config/logging.js";
 import {
   dataController,
   apiController,
-} from "../../controller/expenseController.js";
+} from "../../controller/api/expenseController.js";
 
 const namespace = "Route";
 const router = express.Router();

@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import categoryRoute from "./routes/api/categoryRoute.js";
 import paymentRoute from "./routes/api/paymentRoute.js";
 import expenseRoute from "./routes/api/expenseRoute.js";
+import userRoute from "./routes/api/usersRoute.js";
 
 connectDB();
 
@@ -14,6 +15,7 @@ const app = express();
 app.use(express.json());
 
 /**Routes */
+app.use("/api/user", userRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/payment", paymentRoute);
 app.use("/api/expense", expenseRoute);

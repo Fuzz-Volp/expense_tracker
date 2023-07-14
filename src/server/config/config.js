@@ -1,12 +1,13 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD || ''
-const MONGO_USER = process.env.MONGO_USER || ''
-const DATABASE = process.env.DATABASE || ''
-const SALT = process.env.SALT || 8
-const PORT = process.env.PORT || 3001
-const SECRET = process.env.SECRET || ''
+
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD || "";
+const MONGO_USER = process.env.MONGO_USER || "";
+const DATABASE = process.env.DATABASE || "";
+const SALT = process.env.SALT || 10;
+const PORT = process.env.PORT || 3001;
+const SECRET = process.env.SECRET || "";
 
 const config = {
   mongo: {
@@ -23,10 +24,8 @@ const config = {
     host: 'localhost',
     port: PORT
   },
-  bcrypt: {
-    salt: SALT
-  },
-  secret: SECRET
-}
+  secret: SECRET,
+};
+
 
 export default config

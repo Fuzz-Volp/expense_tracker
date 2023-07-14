@@ -1,5 +1,5 @@
-import Category from "../model/category.js";
-import logging from "../config/logging.js";
+import Category from "../../model/category.js";
+import logging from "../../config/logging.js";
 
 const namespace = "Category";
 
