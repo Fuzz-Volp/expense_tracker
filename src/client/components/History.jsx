@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-function History({ history }) {
+export const History = ({ history }) => {
   return (
     <div>
       <h2>HISTORY</h2>
@@ -8,7 +8,7 @@ function History({ history }) {
         <div key={index}>{entry}</div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default History
+export default History;

@@ -6,10 +6,10 @@ import {
 
 const router = express.Router();
 
-//POST /api/users/login
+//Login: POST /api/users/login
 router.post("/login", dataController.login, apiController.auth);
 
-//POST /api/users
+//Register: POST /api/users
 router.post("/", dataController.register, apiController.auth);
 
 export default router;

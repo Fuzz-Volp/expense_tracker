@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-function ExpenseItem({ date, name, category, payment, amount }) {
+export const ExpenseItem = ({ date, name, category, payment, amount }) => {
   const categoryColors = {
-    food: 'green',
-    entertainment: 'blue',
-    utilities: 'red',
-    other: 'orange'
-  }
+    food: "green",
+    entertainment: "blue",
+    utilities: "red",
+    other: "orange",
+  };
 
-  const defaultColor = 'purple'
-  const categoryColor = categoryColors[category.toLowerCase()] || defaultColor
+  const defaultColor = "purple";
+  const categoryColor = categoryColors[category.toLowerCase()] || defaultColor;
 
   const expenseStyle = {
-    display: 'flex',
-    color: categoryColor
-  }
+    display: "flex",
+    color: categoryColor,
+  };
 
   return (
     <div>
@@ -26,7 +26,7 @@ function ExpenseItem({ date, name, category, payment, amount }) {
         <div className="expense-item__field">{amount}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ExpenseItem
+export default ExpenseItem;
